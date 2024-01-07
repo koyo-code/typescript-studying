@@ -81,3 +81,104 @@ let func = (user: { username: string; age: number; phone?: string }) => {
 };
 
 // TYPE ALIASES
+
+type UserType = {
+  username: string;
+  age: number;
+  phone?: string;
+};
+
+let betterFunc = (user: UserType) => {
+  console.log(user.username);
+};
+
+type myFunc = (a: number, b: string) => void;
+
+let write: myFunc = (num, str) => {
+  console.log(num + "times" + str);
+};
+
+type UserType2 = {
+  username: string;
+  age: number;
+  phone?: string;
+  theme: "dark" | "light";
+};
+
+// INTERFACE
+
+interface IUser {
+  username: string;
+  email: string;
+  age: number;
+}
+
+interface IEmployee extends IUser {
+  employeeId: number;
+}
+
+const emp: IEmployee = {
+  employeeId: 3,
+  username: "hello",
+  email: "https",
+  age: 2,
+};
+
+// GENERICS
+
+interface IAuthor {
+  id: number;
+  username: string;
+}
+
+interface ICategory {
+  id: number;
+  title: string;
+}
+
+interface IPost {
+  id: number;
+  title: string;
+  desc: string;
+  extra: IAuthor[] | ICategory[];
+}
+
+interface IPostBetter<T> {
+  id: number;
+  title: string;
+  desc: string;
+  extra: T[];
+}
+
+const testMe: IPostBetter<string> = {
+  id: 1,
+  title: "post title",
+  desc: "desc",
+  extra: ["str", "hllo"],
+};
+
+interface IPostEvenBetter<T extends object> {
+  id: number;
+  title: string;
+  desc: string;
+  extra: T[];
+}
+
+const testMe2: IPostEvenBetter<IAuthor> = {
+  id: 1,
+  title: "post title",
+  desc: "desc",
+  extra: [
+    { username: "hello", id: 32 },
+    { username: "hello", id: 32 },
+  ],
+};
+const testMe3: IPostEvenBetter<ICategory> = {
+  id: 1,
+  title: "post title",
+  desc: "desc",
+  extra: [
+    { title: "hello", id: 32 },
+    { title: "hello", id: 32 },
+  ],
+};
