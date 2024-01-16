@@ -1,21 +1,13 @@
 import "./style.css";
 
-enum Info {
-  NAME,
+interface book {
+  title: string;
+  published: number;
+  author: string;
 }
 
-const person = {
-  name: Info.NAME,
-};
+const bookInfo: Partial<book> = {};
 
-const obj1 = {
-  hello: "hello",
-  name: "koyo",
-};
-
-const obj2 = {
-  ...obj1,
-  id: 3,
-};
-
-console.log(obj2);
+bookInfo.author;
+bookInfo.published = 1221;
+bookInfo.author = "夏目漱石";
